@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vijay Patidar — GeoAI & Remote Sensing Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark: #0A0F1A;
+  --dark2: #111827;
+  --dark3: #1C2333;
+  --card-dark: #161D2E;
+  --border-dark: rgba(255,255,255,0.08);
+  --white: #FFFFFF;
+  --off: #F8F7F4;
+  --light: #F0EEE9;
+  --border: #E5E2DA;
+  --ink: #111110;
+  --ink2: #2D2B26;
+  --muted: #7A7670;
+  --faint: #B8B5AE;
+  --blue: #3B82F6;
+  --blue2: #2563EB;
+  --teal: #0EA5E9;
+  --green: #10B981;
+  --amber: #F59E0B;
+  --glow: rgba(59,130,246,0.15);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;}
+
+/* ── SCROLL PROGRESS ── */
+#bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--teal));z-index:1000;width:0%;transition:width 0.1s;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  height:60px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;
+  background:rgba(10,15,26,0.95);
+  border-bottom:1px solid var(--border-dark);
+  backdrop-filter:blur(20px);
+  transition:background 0.3s;
+}
+.nav-logo{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:var(--white);text-decoration:none;letter-spacing:-0.01em;}
+.nav-logo span{color:var(--blue);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:0.78rem;font-weight:500;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.2s;letter-spacing:0.01em;}
+.nav-links a:hover{color:var(--white);}
+.nav-links a.active{color:var(--blue);}
+.nav-right{display:flex;align-items:center;gap:0.8rem;}
+.nav-btn{font-size:0.73rem;font-weight:600;padding:0.45rem 1.1rem;border-radius:6px;text-decoration:none;transition:all 0.2s;}
+.nav-btn-ghost{color:rgba(255,255,255,0.7);border:1px solid var(--border-dark);}
+.nav-btn-ghost:hover{border-color:rgba(255,255,255,0.3);color:var(--white);}
+.nav-btn-fill{background:var(--blue);color:var(--white);}
+.nav-btn-fill:hover{background:var(--blue2);transform:translateY(-1px);}
+
+/* ── HERO ── */
+#hero{min-height:100vh;padding-top:60px;background:var(--dark);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 10% 40%, rgba(59,130,246,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 85% 70%, rgba(14,165,233,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 60% at 50% 10%, rgba(16,185,129,0.05) 0%, transparent 50%);
+  pointer-events:none;
+}
+.orbit{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,0.04);pointer-events:none;}
+.orbit-1{width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%);animation:spin 40s linear infinite;}
+.orbit-2{width:900px;height:900px;top:50%;left:50%;transform:translate(-50%,-50%);animation:spin 70s linear infinite reverse;}
+.orbit-3{width:1200px;height:1200px;top:50%;left:50%;transform:translate(-50%,-50%);animation:spin 100s linear infinite;}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg);}}
+.orbit-1::before{content:'';position:absolute;width:6px;height:6px;border-radius:50%;background:var(--blue);top:-3px;left:50%;transform:translateX(-50%);box-shadow:0 0 12px var(--blue);}
+.orbit-2::before{content:'';position:absolute;width:4px;height:4px;border-radius:50%;background:var(--teal);top:-2px;left:50%;transform:translateX(-50%);box-shadow:0 0 8px var(--teal);}
+
+.hero-content{max-width:1100px;margin:0 auto;width:100%;padding:0 5%;display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:center;position:relative;z-index:2;}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.25);color:var(--blue);font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:0.4rem 0.9rem;border-radius:20px;margin-bottom:1.5rem;width:fit-content;opacity:0;animation:fadeUp 0.6s ease forwards 0.1s;}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.7);}}
+
+.hero-h1{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,5.5vw,4.5rem);font-weight:800;line-height:1.05;letter-spacing:-0.03em;color:var(--white);margin-bottom:1rem;opacity:0;animation:fadeUp 0.6s ease forwards 0.2s;}
+.hero-h1 .line2{color:transparent;-webkit-text-stroke:1px rgba(255,255,255,0.3);}
+.hero-h1 .accent{background:linear-gradient(135deg,var(--blue),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+.hero-sub{font-size:0.95rem;color:rgba(255,255,255,0.5);line-height:1.85;max-width:480px;margin-bottom:2rem;opacity:0;animation:fadeUp 0.6s ease forwards 0.3s;}
+.hero-sub strong{color:rgba(255,255,255,0.8);font-weight:500;}
+
+.hero-actions{display:flex;gap:0.8rem;flex-wrap:wrap;margin-bottom:2.5rem;opacity:0;animation:fadeUp 0.6s ease forwards 0.4s;}
+.hbtn-p{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.8rem;background:var(--blue);color:var(--white);font-size:0.82rem;font-weight:600;text-decoration:none;border-radius:8px;transition:all 0.2s;border:1px solid var(--blue);}
+.hbtn-p:hover{background:var(--blue2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(59,130,246,0.3);}
+.hbtn-s{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.8rem;background:transparent;color:rgba(255,255,255,0.75);font-size:0.82rem;font-weight:600;text-decoration:none;border-radius:8px;border:1px solid rgba(255,255,255,0.15);transition:all 0.2s;}
+.hbtn-s:hover{border-color:rgba(255,255,255,0.4);color:var(--white);transform:translateY(-2px);}
+
+.hero-chips{display:flex;flex-wrap:wrap;gap:0.4rem;opacity:0;animation:fadeUp 0.6s ease forwards 0.5s;}
+.hero-chip{font-size:0.68rem;font-weight:500;padding:0.25rem 0.7rem;border-radius:4px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);transition:all 0.2s;}
+.hero-chip:hover{background:rgba(59,130,246,0.12);border-color:rgba(59,130,246,0.3);color:rgba(255,255,255,0.8);}
+.hero-chip.hi{background:rgba(59,130,246,0.1);border-color:rgba(59,130,246,0.25);color:rgba(147,197,253,0.9);}
+
+.hero-stats{display:flex;flex-direction:column;gap:0.75rem;opacity:0;animation:fadeUp 0.6s ease forwards 0.4s;}
+.stat-card{background:var(--card-dark);border:1px solid var(--border-dark);border-radius:12px;padding:1.2rem 1.5rem;display:flex;align-items:center;gap:1.2rem;transition:border-color 0.2s,transform 0.2s;}
+.stat-card:hover{border-color:rgba(59,130,246,0.3);transform:translateX(4px);}
+.stat-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.si-blue{background:rgba(59,130,246,0.15);}
+.si-teal{background:rgba(14,165,233,0.15);}
+.si-green{background:rgba(16,185,129,0.15);}
+.si-amber{background:rgba(245,158,11,0.15);}
+.stat-val{font-family:'Syne',sans-serif;font-size:1.7rem;font-weight:800;color:var(--white);line-height:1;letter-spacing:-0.03em;}
+.stat-lbl{font-size:0.73rem;color:rgba(255,255,255,0.45);margin-top:0.15rem;line-height:1.4;}
+
+.hero-bar{border-top:1px solid var(--border-dark);padding:1rem 5%;display:flex;align-items:center;gap:1.5rem;position:relative;z-index:2;}
+.hbar-label{font-size:0.65rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);flex-shrink:0;}
+.hbar-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.hbar-tag{font-size:0.65rem;color:rgba(255,255,255,0.35);padding:0.15rem 0.55rem;border:1px solid rgba(255,255,255,0.08);border-radius:3px;}
+
+/* ── SHARED SECTION ── */
+.sec{max-width:1100px;margin:0 auto;padding:5.5rem 5%;}
+.sec-alt{background:var(--off);}
+.divider{height:1px;background:var(--border);}
+.eyebrow{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.68rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--blue);margin-bottom:0.8rem;}
+.eyebrow::before{content:'';width:18px;height:2px;background:var(--blue);border-radius:2px;}
+.sec-title{font-family:'Syne',sans-serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.1;color:var(--ink);margin-bottom:0.6rem;}
+.sec-sub{font-size:0.88rem;color:var(--muted);line-height:1.8;max-width:520px;}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:5rem;align-items:start;margin-top:3.5rem;}
+.about-text p{font-size:0.88rem;color:var(--muted);line-height:1.95;margin-bottom:1.1rem;}
+.about-text p:last-child{margin-bottom:0;}
+.about-text strong{color:var(--ink2);font-weight:600;}
+.info-cards{display:flex;flex-direction:column;gap:0;}
+.info-card{display:flex;align-items:center;gap:1rem;padding:0.95rem 0;border-bottom:1px solid var(--border);}
+.info-card:first-child{border-top:1px solid var(--border);}
+.ic-icon{width:36px;height:36px;border-radius:8px;background:rgba(59,130,246,0.08);display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0;}
+.ic-k{font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:0.15rem;}
+.ic-v{font-size:0.8rem;font-weight:600;color:var(--ink2);}
+
+/* ── PROJECTS ── */
+.proj-filter{display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:2.5rem;margin-top:2.5rem;}
+.filter-btn{font-size:0.72rem;font-weight:600;padding:0.45rem 1rem;border-radius:6px;border:1px solid var(--border);background:var(--white);color:var(--muted);cursor:pointer;transition:all 0.2s;}
+.filter-btn:hover{border-color:var(--blue);color:var(--blue);}
+.filter-btn.active{background:var(--blue);border-color:var(--blue);color:var(--white);}
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.proj-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:1.8rem;position:relative;overflow:hidden;transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s;cursor:default;}
+.proj-card:hover{transform:translateY(-5px);border-color:rgba(59,130,246,0.3);box-shadow:0 20px 48px rgba(0,0,0,0.08);}
+.proj-card-top{height:3px;position:absolute;top:0;left:0;right:0;border-radius:16px 16px 0 0;}
+.pct-blue{background:linear-gradient(90deg,#3B82F6,#0EA5E9);}
+.pct-green{background:linear-gradient(90deg,#10B981,#06B6D4);}
+.pct-amber{background:linear-gradient(90deg,#F59E0B,#EF4444);}
+.pct-purple{background:linear-gradient(90deg,#8B5CF6,#3B82F6);}
+.proj-card-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem;margin-top:0.3rem;}
+.proj-card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
+.pci-blue{background:rgba(59,130,246,0.1);}
+.pci-green{background:rgba(16,185,129,0.1);}
+.pci-amber{background:rgba(245,158,11,0.1);}
+.pci-purple{background:rgba(139,92,246,0.1);}
+.proj-card-badge{font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.22rem 0.6rem;border-radius:4px;}
+.pcb-blue{background:rgba(59,130,246,0.1);color:var(--blue);}
+.pcb-green{background:rgba(16,185,129,0.1);color:#059669;}
+.pcb-amber{background:rgba(245,158,11,0.1);color:#D97706;}
+.pcb-purple{background:rgba(139,92,246,0.1);color:#7C3AED;}
+.proj-card-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.5rem;line-height:1.3;letter-spacing:-0.01em;}
+.proj-card[onclick]:hover .proj-card-title::after{content:' ↗';color:var(--blue);font-size:0.85rem;}
+.proj-card[onclick]{transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s;}
+.proj-card[onclick]:hover{transform:translateY(-5px);border-color:rgba(59,130,246,0.35);box-shadow:0 20px 48px rgba(0,0,0,0.08);}
+.proj-gh-hint{display:flex;align-items:center;gap:0.35rem;font-size:0.62rem;font-weight:600;color:var(--muted);margin-bottom:0.6rem;opacity:0.7;transition:color 0.2s,opacity 0.2s;}
+.proj-card:hover .proj-gh-hint{color:var(--blue);opacity:1;}
+.proj-card-desc{font-size:0.77rem;color:var(--muted);line-height:1.85;margin-bottom:1rem;}
+.proj-card-stat{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.7rem;font-weight:700;padding:0.3rem 0.7rem;border-radius:6px;margin-bottom:1rem;}
+.pcs-blue{background:rgba(59,130,246,0.08);color:var(--blue);}
+.pcs-green{background:rgba(16,185,129,0.08);color:#059669;}
+.pcs-amber{background:rgba(245,158,11,0.08);color:#D97706;}
+.pcs-purple{background:rgba(139,92,246,0.08);color:#7C3AED;}
+.proj-card-tags{display:flex;flex-wrap:wrap;gap:0.3rem;}
+.pc-tag{font-size:0.62rem;font-weight:500;color:var(--muted);background:var(--off);border:1px solid var(--border);padding:0.18rem 0.5rem;border-radius:4px;}
+
+/* ── SKILLS HEX ── */
+.skills-wrap { display: flex; flex-direction: column; gap: 2.5rem; margin-top: 3rem; }
+
+.sk-group-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.sk-group-label::before {
+  content: '';
+  width: 4px;
+  height: 16px;
+  background: var(--blue);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.sk-group-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.hex-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.hex-wrap {
+  width: 110px;
+  height: 124px;
+  perspective: 800px;
+  opacity: 0;
+  animation: hexIn 0.5s ease forwards;
+  animation-play-state: paused;
+}
+.hex-wrap.visible { animation-play-state: running; }
+@keyframes hexIn {
+  from { opacity: 0; transform: scale(0.6) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.hex-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hex-wrap:hover .hex-inner { transform: rotateY(180deg); }
+
+.hex-face {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Front */
+.hex-front {
+  background: #161D2E;
+  visibility: visible;
+  transition: visibility 0s 0s;
+}
+.hex-wrap:hover .hex-front {
+  visibility: hidden;
+  transition: visibility 0s 0.3s;
+}
+.hex-front-glow {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+  background: var(--accent, #3B82F6);
+  opacity: 0.12;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.hex-wrap:hover .hex-front-glow { opacity: 0.28; }
+.hex-wrap:hover .hex-front { filter: drop-shadow(0 0 16px var(--accent, #3B82F6)); }
+
+.hex-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  margin-bottom: 0.35rem;
+  position: relative;
+  z-index: 1;
+}
+.hex-name {
+  font-size: 0.56rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.35;
+  padding: 0 8px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Back */
+.hex-back {
+  background: var(--accent, #3B82F6);
+  transform: rotateY(180deg);
+  visibility: hidden;
+  transition: visibility 0s 0.3s;
+  gap: 4px;
+}
+.hex-wrap:hover .hex-back {
+  visibility: visible;
+  transition: visibility 0s 0.3s;
+}
+/* .hex-back-pct {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+} */
+.hex-back-label {
+  font-size: 0.5rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* tech tags */
+.tech-tags-section{margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid var(--border);}
+.tech-tags-title{font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;}
+.tech-tags{display:flex;flex-wrap:wrap;gap:0.5rem;}
+.tech-tag{font-size:0.75rem;font-weight:500;padding:0.4rem 0.9rem;border-radius:6px;border:1px solid var(--border);color:var(--ink2);background:var(--white);transition:all 0.2s;}
+.tech-tag:hover{border-color:var(--blue);color:var(--blue);background:rgba(59,130,246,0.05);}
+
+/* ── TIMELINE ── */
+.timeline{margin-top:3rem;position:relative;padding-left:2rem;}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--border);border-radius:2px;}
+.tl-item{position:relative;margin-bottom:2.5rem;opacity:0;transform:translateX(-15px);transition:opacity 0.5s ease,transform 0.5s ease;}
+.tl-item.visible{opacity:1;transform:none;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-2.45rem;top:0.35rem;width:14px;height:14px;border-radius:50%;background:var(--white);border:2px solid var(--border);transition:border-color 0.3s,background 0.3s;display:flex;align-items:center;justify-content:center;}
+.tl-item:hover .tl-dot{border-color:var(--blue);background:var(--blue);}
+.tl-dot-inner{width:4px;height:4px;border-radius:50%;background:var(--muted);transition:background 0.3s;}
+.tl-item:hover .tl-dot-inner{background:var(--white);}
+.tl-date{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:0.4rem;}
+.tl-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.2rem;letter-spacing:-0.01em;}
+.tl-org{font-size:0.78rem;font-weight:600;color:var(--muted);margin-bottom:0.6rem;}
+.tl-desc{font-size:0.78rem;color:var(--muted);line-height:1.85;}
+.tl-tags{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.7rem;}
+.tl-tag{font-size:0.62rem;font-weight:500;color:var(--muted);background:var(--off);border:1px solid var(--border);padding:0.15rem 0.5rem;border-radius:4px;}
+
+/* ── CONTACT ── */
+.contact-sec{background:var(--dark);padding:5.5rem 5%;}
+.contact-inner{max-width:1100px;margin:0 auto;}
+.contact-eyebrow{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.68rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--blue);margin-bottom:0.8rem;}
+.contact-eyebrow::before{content:'';width:18px;height:2px;background:var(--blue);}
+.contact-title{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:800;letter-spacing:-0.03em;color:var(--white);margin-bottom:0.5rem;}
+.contact-title span{background:linear-gradient(135deg,var(--blue),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.contact-sub{font-size:0.88rem;color:rgba(255,255,255,0.4);line-height:1.8;max-width:440px;margin-bottom:3rem;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.contact-links{display:flex;flex-direction:column;gap:0.75rem;}
+.contact-link{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.3rem;background:var(--card-dark);border:1px solid var(--border-dark);border-radius:12px;text-decoration:none;transition:border-color 0.2s,transform 0.2s;}
+.contact-link:hover{border-color:rgba(59,130,246,0.4);transform:translateX(5px);}
+.cl-icon{width:38px;height:38px;border-radius:9px;background:rgba(59,130,246,0.12);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.cl-k{font-size:0.58rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);display:block;margin-bottom:0.15rem;}
+.cl-v{font-size:0.8rem;font-weight:500;color:rgba(255,255,255,0.8);}
+.cl-arr{margin-left:auto;color:rgba(255,255,255,0.2);font-size:0.9rem;transition:transform 0.2s,color 0.2s;}
+.contact-link:hover .cl-arr{transform:translateX(4px);color:var(--blue);}
+.gh-box{background:var(--card-dark);border:1px solid var(--border-dark);border-radius:16px;padding:2rem;overflow:hidden;position:relative;}
+.gh-box::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,0.12),transparent 70%);}
+.gh-box-label{font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.7rem;}
+.gh-box-title{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:var(--white);margin-bottom:0.4rem;}
+.gh-box-desc{font-size:0.77rem;color:rgba(255,255,255,0.4);line-height:1.8;margin-bottom:1.3rem;}
+.gh-pills{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1.5rem;}
+.gh-pill{display:flex;align-items:center;gap:0.6rem;font-size:0.75rem;color:rgba(255,255,255,0.6);}
+.gh-pill::before{content:'✓';color:var(--blue);font-size:0.7rem;font-weight:700;flex-shrink:0;}
+.gh-cta{display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1.1rem;background:var(--blue);color:var(--white);text-decoration:none;border-radius:10px;font-size:0.78rem;font-weight:700;transition:background 0.2s,transform 0.2s;}
+.gh-cta:hover{background:var(--blue2);transform:translateY(-2px);}
+
+/* ── FOOTER ── */
+footer{background:#06090F;padding:1.2rem 5%;display:flex;align-items:center;justify-content:space-between;}
+.f-left{font-size:0.75rem;color:rgba(255,255,255,0.2);}
+.f-left span{color:rgba(255,255,255,0.45);font-weight:600;}
+.f-links{display:flex;gap:1.5rem;}
+.f-link{font-size:0.68rem;color:rgba(255,255,255,0.2);text-decoration:none;transition:color 0.2s;}
+.f-link:hover{color:rgba(255,255,255,0.6);}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.reveal-d1{transition-delay:0.08s;} .reveal-d2{transition-delay:0.16s;}
+.reveal-d3{transition-delay:0.24s;} .reveal-d4{transition-delay:0.32s;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .hero-content{grid-template-columns:1fr;}
+  .hero-stats{display:none;}
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .proj-grid{grid-template-columns:1fr;}
+  .sec{padding:3.5rem 5%;}
+  .hex-wrap{width:90px;height:102px;}
+}
+</style>
+</head>
+<body>
+
+<div id="bar"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">VP<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#timeline">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="mailto:patidar.vijay9973@gmail.com" class="nav-btn nav-btn-ghost">Email Me</a>
+    <a href="https://www.linkedin.com/in/vijay-patidar-78b186252/" target="_blank" class="nav-btn nav-btn-ghost">LinkedIn ↗</a>
+    <a href="https://github.com/VijayPatidar-01" target="_blank" class="nav-btn nav-btn-fill">GitHub ↗</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="orbit orbit-1"></div>
+  <div class="orbit orbit-2"></div>
+  <div class="orbit orbit-3"></div>
+
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-badge"><span class="hero-badge-dot"></span>Open to Opportunities</div>
+      <h1 class="hero-h1">
+        GeoAI &amp;<br>
+        <span class="accent">Remote Sensing</span><br>
+        <span class="line2">Engineer</span>
+      </h1>
+      <p class="hero-sub">
+        Hi, I'm <strong>Vijay Patidar</strong> — I build <strong>AI-powered Earth observation pipelines</strong> that fuse satellite imagery, machine learning, and hydro-climatic data into actionable geospatial insights for agriculture and environmental monitoring.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="hbtn-p">View My Projects ↓</a>
+        <a href="mailto:patidar.vijay9973@gmail.com" class="hbtn-s">✉ Hire Me</a>
+        <a href="https://github.com/VijayPatidar-01" target="_blank" class="hbtn-s">GitHub ↗</a>
+      </div>
+      <div class="hero-chips">
+        <span class="hero-chip hi">Sentinel-1 SAR</span>
+        <span class="hero-chip hi">SMAP</span>
+        <span class="hero-chip hi">Google Earth Engine</span>
+        <span class="hero-chip">LISS-4</span>
+        <span class="hero-chip">Random Forest</span>
+        <span class="hero-chip">FastAPI</span>
+        <span class="hero-chip">OpenCV</span>
+        <span class="hero-chip">PyTorch</span>
+        <span class="hero-chip">GDAL</span>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-icon si-blue">🛰️</div>
+        <div>
+          <div class="stat-val" data-count="4" data-suffix="+">4+</div>
+          <div class="stat-lbl">GeoAI Projects Built<br>SAR · LULC · Change Detection · Registration</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon si-green">🎯</div>
+        <div>
+          <div class="stat-val" data-count="94" data-suffix="%">94%</div>
+          <div class="stat-lbl">CV Accuracy — LULC Classification<br>OBIA + Random Forest · 5 Classes</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon si-teal">🌊</div>
+        <div>
+          <div class="stat-val" data-count="6" data-suffix="">6</div>
+          <div class="stat-lbl">Soil Depth Layers Predicted<br>SM_L1–SM_L6 · Sentinel-1 + SMAP Fusion</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon si-amber">🔗</div>
+        <div>
+          <div class="stat-val" data-count="5" data-suffix="+">5+</div>
+          <div class="stat-lbl">Satellite Sources Fused<br>ESA · NASA · ISRO · ISRIC · IMD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-bar">
+    <span class="hbar-label">Stack</span>
+    <div class="hbar-tags">
+      <span class="hbar-tag">Python</span><span class="hbar-tag">PyTorch</span>
+      <span class="hbar-tag">scikit-learn</span><span class="hbar-tag">Google Earth Engine</span>
+      <span class="hbar-tag">FastAPI</span><span class="hbar-tag">Leaflet.js</span>
+      <span class="hbar-tag">GDAL</span><span class="hbar-tag">Rasterio</span>
+      <span class="hbar-tag">OpenCV</span><span class="hbar-tag">OTB</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec">
+    <div class="reveal">
+      <div class="eyebrow">About Me</div>
+      <h2 class="sec-title">Turning Raw Rasters Into Real Insights</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal reveal-d1">
+        <p>I'm a <strong>GeoAI & Remote Sensing Engineer</strong> from Madhya Pradesh, India — working at the intersection of satellite imagery, machine learning, and geospatial analysis.</p>
+        <p>My work involves building end-to-end systems that process raw satellite data — from <strong>SAR backscatter to multi-layer soil moisture maps</strong> — using platforms like Google Earth Engine alongside Python-based ML pipelines.</p>
+        <p>I'm passionate about solving real-world problems in <strong>agriculture and environmental monitoring</strong>. My projects span Sentinel-1, LISS-4, SMAP, and IMD climate grids — fused with machine learning to produce actionable geospatial outputs.</p>
+        <p>Every project I build is <strong>end-to-end</strong> — from raw data ingestion to frontend visualization — because I believe the best geospatial tools put insights directly in the hands of decision-makers.</p>
+      </div>
+      <div class="info-cards reveal reveal-d2">
+        <div class="info-card"><div class="ic-icon">📍</div><div><span class="ic-k">Location</span><span class="ic-v">Madhya Pradesh, India</span></div></div>
+        <div class="info-card"><div class="ic-icon">🛰️</div><div><span class="ic-k">Core Platform</span><span class="ic-v">Google Earth Engine · SentinelHub</span></div></div>
+        <div class="info-card"><div class="ic-icon">🌱</div><div><span class="ic-k">Domain Focus</span><span class="ic-v">Agriculture · Environment · Land Cover</span></div></div>
+        <div class="info-card"><div class="ic-icon">🤖</div><div><span class="ic-k">ML Stack</span><span class="ic-v">PyTorch · scikit-learn · Random Forest</span></div></div>
+        <div class="info-card"><div class="ic-icon">💼</div><div><span class="ic-k">Status</span><span class="ic-v" style="color:var(--blue);">Open to Opportunities</span></div></div>
+        <div class="info-card"><div class="ic-icon">✉️</div><div><span class="ic-k">Email</span><span class="ic-v">patidar.vijay9973@gmail.com</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects" class="sec-alt">
+  <div class="sec">
+    <div class="reveal">
+      <div class="eyebrow">Featured Work</div>
+      <h2 class="sec-title">Projects</h2>
+      <p class="sec-sub">End-to-end GeoAI systems — from raw satellite data to production-ready tools.</p>
+    </div>
+
+    <div class="proj-filter reveal">
+      <button class="filter-btn active" data-filter="all">All Projects</button>
+      <button class="filter-btn" data-filter="ml">ML / AI</button>
+      <button class="filter-btn" data-filter="sar">SAR</button>
+      <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
+      <button class="filter-btn" data-filter="cv">Image Processing</button>
+    </div>
+
+    <div class="proj-grid">
+      <div class="proj-card reveal reveal-d1" data-tags="ml sar" onclick="window.open('https://github.com/VijayPatidar-01/Soil-Moisture-Prediction-using-Multi-Source-Data-Fusion','_blank')" style="cursor:pointer;">
+        <div class="proj-card-top pct-blue"></div>
+        <div class="proj-card-head">
+          <div class="proj-card-icon pci-blue">🌱</div>
+          <span class="proj-card-badge pcb-blue">SAR · ML · Fusion</span>
+        </div>
+        <div class="proj-gh-hint">🐙 View on GitHub</div>
+        <div class="proj-card-title">Soil Moisture Estimation — SAR + SMAP</div>
+        <p class="proj-card-desc">ML pipeline estimating multi-layer soil moisture (SM_L1–SM_L6) by fusing Sentinel-1 SAR, SMAP, IMD rainfall & temperature, and SoilGrids data — validated against IoT sensors at Sehore & Khargone, MP.</p>
+        <div class="proj-card-stat pcs-blue">🎯 6 depth layers · Sentinel-1 + SMAP + IMD + SoilGrids</div>
+        <div class="proj-card-tags">
+          <span class="pc-tag">Sentinel-1</span><span class="pc-tag">SMAP SPL3SMP_E</span><span class="pc-tag">GEE</span><span class="pc-tag">Random Forest</span><span class="pc-tag">SoilGrids</span><span class="pc-tag">IMD</span>
+        </div>
+      </div>
+
+      <div class="proj-card reveal reveal-d2" data-tags="ml" onclick="window.open('https://github.com/VijayPatidar-01/LULC-Classification-OBIA','_blank')" style="cursor:pointer;">
+        <div class="proj-card-top pct-amber"></div>
+        <div class="proj-card-head">
+          <div class="proj-card-icon pci-amber">🗺️</div>
+          <span class="proj-card-badge pcb-amber">OBIA · Classification</span>
+        </div>
+        <div class="proj-gh-hint">🐙 View on GitHub</div>
+        <div class="proj-card-title">LULC Classification — OBIA + Random Forest</div>
+        <p class="proj-card-desc">Automated Land Use Land Cover mapping from LISS-4 imagery using OTB segmentation. NDVI, SAVI & NDWI zonal statistics (mean, min, max, std) build a 24-feature vector per segment for 5-class RF classification.</p>
+        <div class="proj-card-stat pcs-amber">🏆 94% Cross-Validation Accuracy · 24 features · 5 classes</div>
+        <div class="proj-card-tags">
+          <span class="pc-tag">LISS-4</span><span class="pc-tag">Orfeo ToolBox</span><span class="pc-tag">PyTorch</span><span class="pc-tag">GDAL</span><span class="pc-tag">NDVI·SAVI·NDWI</span><span class="pc-tag">QGIS</span>
+        </div>
+      </div>
+
+      <div class="proj-card reveal reveal-d3" data-tags="fullstack ml" onclick="window.open('https://github.com/VijayPatidar-01/GeoAI-Multi-Temporal-Satellite-Change-Detection-Tool','_blank')" style="cursor:pointer;">
+        <div class="proj-card-top pct-green"></div>
+        <div class="proj-card-head">
+          <div class="proj-card-icon pci-green">🌍</div>
+          <span class="proj-card-badge pcb-green">Full-Stack GeoAI</span>
+        </div>
+        <div class="proj-gh-hint">🐙 View on GitHub</div>
+        <div class="proj-card-title">Multi-Temporal Change Detection Tool</div>
+        <p class="proj-card-desc">End-to-end web app — upload shapefile AOI, select T1/T2 dates, get automated NDVI/NDWI change analysis with an interactive Leaflet split-view map, XYZ tile server, and CSV/Excel/JSON export.</p>
+        <div class="proj-card-stat pcs-green">🌐 Gain/Loss/No-change · Leaflet split-view · FastAPI</div>
+        <div class="proj-card-tags">
+          <span class="pc-tag">FastAPI</span><span class="pc-tag">Sentinel-2</span><span class="pc-tag">GEE</span><span class="pc-tag">Leaflet</span><span class="pc-tag">GeoPandas</span><span class="pc-tag">NumPy</span>
+        </div>
+      </div>
+
+      <div class="proj-card reveal reveal-d4" data-tags="cv" onclick="window.open('https://github.com/VijayPatidar-01/Satellite-Data-Preprocessing-Pipeline','_blank')" style="cursor:pointer;">
+        <div class="proj-card-top pct-purple"></div>
+        <div class="proj-card-head">
+          <div class="proj-card-icon pci-purple">📐</div>
+          <span class="proj-card-badge pcb-purple">Image Processing</span>
+        </div>
+        <div class="proj-gh-hint">🐙 View on GitHub</div>
+        <div class="proj-card-title">Multi-Band Registration &amp; Geometric Alignment</div>
+        <p class="proj-card-desc">5-stage hybrid band-to-band registration pipeline — Phase Correlation, Canny cross-spectral matching for NIR↔Red, patch-wise alignment with Laplacian texture validation, ECC, and Optical Flow.</p>
+        <div class="proj-card-stat pcs-purple">⚡ Sub-pixel precision · Cross-spectral NIR↔Red · Artifact-free</div>
+        <div class="proj-card-tags">
+          <span class="pc-tag">OpenCV</span><span class="pc-tag">scikit-image</span><span class="pc-tag">Phase Correlation</span><span class="pc-tag">Optical Flow</span><span class="pc-tag">LISS-4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec">
+    <div class="reveal">
+      <div class="eyebrow">Capabilities</div>
+      <h2 class="sec-title">Skills &amp; Tech Stack</h2>
+      <p class="sec-sub">Hover any badge to reveal proficiency. Core competencies across satellite data processing, ML modelling, and full-stack geospatial development.</p>
+    </div>
+
+    <div class="skills-wrap">
+
+      <!-- Remote Sensing -->
+      <div class="reveal reveal-d1">
+        <div class="sk-group-label">Remote Sensing &amp; Geospatial</div>
+        <div class="hex-grid">
+          <div class="hex-wrap" style="--accent:#3B82F6; animation-delay:0.05s">
+            <div class="hex-inner">
+              <div class="hex-face hex-front">
+                <div class="hex-front-glow"></div>
+                <div class="hex-icon">🌍</div>
+                <div class="hex-name">Google Earth Engine</div>
+              </div>
+              <div class="hex-face hex-back">
+                <!-- <div class="hex-back-pct">90%</div> -->
+                <div class="hex-back-label">GEE</div>
+              </div>
+            </div>
+          </div>
+          <div class="hex-wrap" style="--accent:#0EA5E9; animation-delay:0.1s">
+            <div class="hex-inner">
+              <div class="hex-face hex-front">
+                <div class="hex-front-glow"></div>
+                <div class="hex-icon">🗂️</div>
+                <div class="hex-name">GDAL / Rasterio</div>
+              </div>
+              <div class="hex-face hex-back">
+                <!-- <div class="hex-back-pct">88%</div> -->
+                <div class="hex-back-label">GDAL</div>
+              </div>
+            </div>
+          </div>
+          <div class="hex-wrap" style="--accent:#6366F1; animation-delay:0.15s">
+            <div class="hex-inner">
+              <div class="hex-face hex-front">
+                <div class="hex-front-glow"></div>
+                <div class="hex-icon">📡</div>
+                <div class="hex-name">SAR Processing</div>
+              </div>
+              <div class="hex-face hex-back">
+                <!-- <div class="hex-back-pct">82%</div> -->
+                <div class="hex-back-label">Sentinel-1</div>
+              </div>
+            </div>
+          </div>
+          <div class="hex-wrap" style="--accent:#14B8A6; animation-delay:0.2s">
+            <div class="hex-inner">
+              <div class="hex-face hex-front">
+                <div class="hex-front-glow"></div>
+                <div class="hex-icon">🗺️</div>
+                <div class="hex-name">GeoPandas / Shapely</div>
+              </div>
+              <div class="hex-face hex-back">
+                <!-- <div class="hex-back-pct">85%</div> -->
+                <div class="hex-back-label">Vector GIS</div>
+              </div>
+            </div>
+          </div>
+          <div class="hex-wrap" style="--accent:#F59E0B; animation-delay:0.25s">
+            <div class="hex-inner">
+              <div class="hex-face hex-front">
+                <div class="hex-front-glow"></div>
+                <div class="hex-icon">🔬</div>
+                <div class="hex-name">OTB Orfeo ToolBox</div>
+              </div>
+              <div class="hex-face hex-back">
+                <!-- <div class="hex-back-pct">78%</div> -->
+                <div class="hex-back-label">OBIA</div>
+              </div>
+            </div>
+          </div>
+          <div class="hex-wrap" style="--accent:#EC4899; animation-delay:0.3s">
+            <div class="hex-inner">
+              <div class="hex-face hex-front">
+                <div class="hex-front-glow"></div>
+                <div class="hex-icon">🛰️</div>
+                <div class="hex-name">SMAP / SoilGrids</div>
+              </div>
+              <div class="hex-face hex-back">
+                <!-- <div class="hex-back-pct">80%</div> -->
+                <div class="hex-back-label">Data Fusion</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ML & Programming -->
+      <div class="reveal reveal-d2">
+        <div class="sk-group-label">Machine Learning &amp; Programming</div>
+        <div class="hex-grid">
+          <div class="hex-wrap" style="--accent:#10B981; animation-delay:0.05s">
+            <div class="hex-inner">
+              <div class="hex-face hex-front">
+                <div class="hex-front-glow"></div>
+                <div class="hex-icon">🐍</div>
+                <div class="hex-name">Python</div>
+              </div>
+              <div class="hex-face hex-back">
+                <!-- <div class="hex-back-pct">92%</div> -->
+                <div class="hex-back-label">Python</div>
+              </div>
+            </div>
+          </div>
+          <div class="hex-wrap" style="--accent:#22C55E; animation-delay:0.1s">
+            <div class="hex-inner">
+              <div class="hex-face hex-front">
+                <div class="hex-front-glow"></div>
+                <div class="hex-icon">🌲</div>
+                <div class="hex-name">scikit-learn / RF</div>
+              </div>
+              <div class="hex-face hex-back">
+                <!-- <div class="hex-back-pct">88%</div> -->
+                <div class="hex-back-label">Random Forest</div>
+              </div>
+            </div>
+          </div>
+          <div class="hex-wrap" style="--accent:#F97316; animation-delay:0.15s">
+            <div class="hex-inner">
+              <div class="hex-face hex-front">
+                <div class="hex-front-glow"></div>
+                <div class="hex-icon">🔥</div>
+                <div class="hex-name">PyTorch</div>
+              </div>
+              <div class="hex-face hex-back">
+                <!-- <div class="hex-back-pct">75%</div> -->
+                <div class="hex-back-label">Deep Learning</div>
+              </div>
+            </div>
+          </div>
+          <div class="hex-wrap" style="--accent:#8B5CF6; animation-delay:0.2s">
+            <div class="hex-inner">
+              <div class="hex-face hex-front">
+                <div class="hex-front-glow"></div>
+                <div class="hex-icon">👁️</div>
+                <div class="hex-name">OpenCV</div>
+              </div>
+              <div class="hex-face hex-back">
+                <!-- <div class="hex-back-pct">83%</div> -->
+                <div class="hex-back-label">Image Proc.</div>
+              </div>
+            </div>
+          </div>
+          <div class="hex-wrap" style="--accent:#06B6D4; animation-delay:0.25s">
+            <div class="hex-inner">
+              <div class="hex-face hex-front">
+                <div class="hex-front-glow"></div>
+                <div class="hex-icon">⚡</div>
+                <div class="hex-name">FastAPI</div>
+              </div>
+              <div class="hex-face hex-back">
+                <!-- <div class="hex-back-pct">78%</div> -->
+                <div class="hex-back-label">Web Backend</div>
+              </div>
+            </div>
+          </div>
+          <div class="hex-wrap" style="--accent:#A855F7; animation-delay:0.3s">
+            <div class="hex-inner">
+              <div class="hex-face hex-front">
+                <div class="hex-front-glow"></div>
+                <div class="hex-icon">🗾</div>
+                <div class="hex-name">Leaflet.js</div>
+              </div>
+              <div class="hex-face hex-back">
+                <!-- <div class="hex-back-pct">74%</div> -->
+                <div class="hex-back-label">Map UI</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end skills-wrap -->
+
+    <div class="tech-tags-section reveal">
+      <div class="tech-tags-title">All Technologies</div>
+      <div class="tech-tags">
+        <span class="tech-tag">Python</span><span class="tech-tag">PyTorch</span>
+        <span class="tech-tag">scikit-learn</span><span class="tech-tag">NumPy</span>
+        <span class="tech-tag">Pandas</span><span class="tech-tag">OpenCV</span>
+        <span class="tech-tag">scikit-image</span><span class="tech-tag">Google Earth Engine</span>
+        <span class="tech-tag">GDAL</span><span class="tech-tag">Rasterio</span>
+        <span class="tech-tag">GeoPandas</span><span class="tech-tag">Orfeo ToolBox</span>
+        <span class="tech-tag">QGIS</span><span class="tech-tag">FastAPI</span>
+        <span class="tech-tag">Leaflet.js</span><span class="tech-tag">Matplotlib</span>
+        <span class="tech-tag">Sentinel-1 SAR</span><span class="tech-tag">Sentinel-2</span>
+        <span class="tech-tag">LISS-4</span><span class="tech-tag">SMAP SPL3SMP_E</span>
+        <span class="tech-tag">SoilGrids 250m</span><span class="tech-tag">IMD Gridded</span>
+        <span class="tech-tag">NDVI</span><span class="tech-tag">SAVI</span>
+        <span class="tech-tag">NDWI</span><span class="tech-tag">Zonal Statistics</span>
+        <span class="tech-tag">Phase Correlation</span><span class="tech-tag">Optical Flow</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TIMELINE -->
+<section id="timeline" class="sec-alt">
+  <div class="sec">
+    <div class="reveal">
+      <div class="eyebrow">Experience &amp; Journey</div>
+      <h2 class="sec-title">Timeline</h2>
+      <p class="sec-sub">My journey in GeoAI, remote sensing, and geospatial development.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+        <div class="tl-date">2024 — Present</div>
+        <div class="tl-title">GeoAI & Remote Sensing Engineer</div>
+        <div class="tl-org">Independent / Project-Based · Madhya Pradesh, India</div>
+        <p class="tl-desc">Building end-to-end satellite data pipelines and ML models for agriculture and environmental monitoring. Projects span soil moisture estimation, LULC classification, change detection, and geometric alignment across Sentinel-1, SMAP, and LISS-4 data.</p>
+        <div class="tl-tags"><span class="tl-tag">GEE</span><span class="tl-tag">SAR</span><span class="tl-tag">Random Forest</span><span class="tl-tag">FastAPI</span><span class="tl-tag">Python</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+        <div class="tl-date">2024</div>
+        <div class="tl-title">Full-Stack GeoAI Web App — Change Detection Tool</div>
+        <div class="tl-org">Personal Project · Web Application</div>
+        <p class="tl-desc">Built a production-grade multi-temporal change detection tool — FastAPI backend, Google Earth Engine data fetch, Leaflet split-view frontend, XYZ tile server, and CSV/Excel/JSON export. End-to-end from AOI upload to interactive map visualization.</p>
+        <div class="tl-tags"><span class="tl-tag">FastAPI</span><span class="tl-tag">Sentinel-2</span><span class="tl-tag">Leaflet</span><span class="tl-tag">NDVI</span><span class="tl-tag">NDWI</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+        <div class="tl-date">2024</div>
+        <div class="tl-title">LULC Classification — 94% CV Accuracy</div>
+        <div class="tl-org">Research Project · LISS-4 / Resourcesat-2</div>
+        <p class="tl-desc">Developed a complete OBIA-based LULC classification pipeline using Orfeo ToolBox segmentation, spectral index computation (NDVI, SAVI, NDWI), zonal statistics feature engineering (24 features per segment), and Random Forest with PyTorch. Achieved 94% cross-validation accuracy across 5 land cover classes.</p>
+        <div class="tl-tags"><span class="tl-tag">LISS-4</span><span class="tl-tag">OTB</span><span class="tl-tag">PyTorch</span><span class="tl-tag">OBIA</span><span class="tl-tag">94% CV</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+        <div class="tl-date">2023 — 2024</div>
+        <div class="tl-title">Soil Moisture Estimation — SAR + SMAP Fusion</div>
+        <div class="tl-org">Research Project · Sehore &amp; Khargone, MP</div>
+        <p class="tl-desc">Designed a multi-source data fusion pipeline combining Sentinel-1 SAR, SMAP SPL3SMP_E, IMD gridded rainfall & temperature, and SoilGrids soil properties to estimate 6-layer soil moisture across MP. Validated against ~10 IoT monitoring sites.</p>
+        <div class="tl-tags"><span class="tl-tag">Sentinel-1</span><span class="tl-tag">SMAP</span><span class="tl-tag">IMD</span><span class="tl-tag">SoilGrids</span><span class="tl-tag">6 Layers</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+        <div class="tl-date">2023</div>
+        <div class="tl-title">Satellite Preprocessing Automation Pipeline</div>
+        <div class="tl-org">Personal Project · Python Pipeline</div>
+        <p class="tl-desc">Built a 6-step automated pipeline converting raw LISS-4 imagery into analysis-ready GeoTIFFs — geometric correction, radiometric calibration, Dark Object Subtraction atmospheric correction, cloud masking with OpenCV, band stacking, and QC reporting.</p>
+        <div class="tl-tags"><span class="tl-tag">GDAL</span><span class="tl-tag">Rasterio</span><span class="tl-tag">OpenCV</span><span class="tl-tag">DOS</span><span class="tl-tag">GeoTIFF</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-sec">
+  <div class="contact-inner">
+    <div class="reveal">
+      <div class="contact-eyebrow">Let's Connect</div>
+      <h2 class="contact-title">Open to <span>Opportunities</span></h2>
+      <p class="contact-sub">Looking for roles in GeoAI, remote sensing ML, satellite image processing, and geospatial backend development. Always happy to connect with researchers and teams working on Earth observation.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-links reveal reveal-d1">
+        <a href="mailto:patidar.vijay9973@gmail.com" class="contact-link">
+          <div class="cl-icon">✉️</div>
+          <div><span class="cl-k">Email</span><span class="cl-v">patidar.vijay9973@gmail.com</span></div>
+          <span class="cl-arr">→</span>
+        </a>
+        <a href="https://github.com/VijayPatidar-01" target="_blank" class="contact-link">
+          <div class="cl-icon">🐙</div>
+          <div><span class="cl-k">GitHub</span><span class="cl-v">github.com/VijayPatidar-01</span></div>
+          <span class="cl-arr">→</span>
+        </a>
+        <a href="https://www.linkedin.com/in/vijay-patidar-78b186252/" target="_blank" class="contact-link">
+          <div class="cl-icon">💼</div>
+          <div><span class="cl-k">LinkedIn</span><span class="cl-v">linkedin.com/in/your-linkedin-username</span></div>
+          <span class="cl-arr">→</span>
+        </a>
+        <a href="https://www.google.com/maps/@23.2599,77.4126,13z" target="_blank" class="contact-link">
+          <div class="cl-icon">📍</div>
+          <div><span class="cl-k">Location</span><span class="cl-v">Madhya Pradesh, India · Bhopal</span></div>
+          <span class="cl-arr">→</span>
+        </a>
+        <div class="contact-link" style="cursor:default;">
+          <div class="cl-icon">🟢</div>
+          <div><span class="cl-k">Status</span><span class="cl-v" style="color:var(--blue);">Open to Opportunities</span></div>
+        </div>
+      </div>
+
+      <div class="gh-box reveal reveal-d2">
+        <div class="gh-box-label">GitHub Profile</div>
+        <div class="gh-box-title">See All My Work</div>
+        <p class="gh-box-desc">All projects, code, pipelines, and documentation — open and ready for your review.</p>
+        <div class="gh-pills">
+          <div class="gh-pill">4 GeoAI projects — fully documented with READMEs</div>
+          <div class="gh-pill">Satellites: ESA · NASA · ISRO · ISRIC · IMD</div>
+          <div class="gh-pill">94% CV accuracy — LULC Classification</div>
+          <div class="gh-pill">Full-stack: FastAPI · GEE · Leaflet · Python ML</div>
+        </div>
+        <a href="https://github.com/VijayPatidar-01" target="_blank" class="gh-cta">
+          Visit GitHub Profile <span>↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-left">© 2024 <span>Vijay Patidar</span> — GeoAI & Remote Sensing Engineer</div>
+  <div class="f-links">
+    <a href="https://github.com/VijayPatidar-01" target="_blank" class="f-link">GitHub</a>
+    <a href="https://www.linkedin.com/in/vijay-patidar-78b186252/" target="_blank" class="f-link">LinkedIn</a>
+    <a href="mailto:patidar.vijay9973@gmail.com" class="f-link">Email</a>
+    <a href="#hero" class="f-link">Back to Top ↑</a>
+  </div>
+</footer>
+
+<script>
+/* SCROLL PROGRESS */
+const bar = document.getElementById('bar');
+window.addEventListener('scroll', () => {
+  const s = document.documentElement.scrollTop;
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  bar.style.width = (s / h * 100) + '%';
+});
+
+/* ACTIVE NAV LINK */
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+  navLinks.forEach(a => { a.classList.toggle('active', a.getAttribute('href') === '#' + cur); });
+});
+
+/* SCROLL REVEAL */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 70);
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* TIMELINE REVEAL */
+const tlio = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 120);
+      tlio.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.tl-item').forEach(el => tlio.observe(el));
+
+/* STAT COUNTER */
+function animCount(el, target, suffix, dur) {
+  let start = null;
+  const step = ts => {
+    if (!start) start = ts;
+    const p = Math.min((ts - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.floor(target * ease) + suffix;
+    if (p < 1) requestAnimationFrame(step);
+    else el.textContent = target + suffix;
+  };
+  requestAnimationFrame(step);
+}
+const statVals = document.querySelectorAll('.stat-val[data-count]');
+let counted = false;
+const cio = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting && !counted) {
+    counted = true;
+    statVals.forEach(el => animCount(el, +el.dataset.count, el.dataset.suffix, 1400));
+  }
+}, { threshold: 0.4 });
+if (statVals[0]) cio.observe(statVals[0].closest('.hero-stats'));
+
+/* PROJECT FILTER */
+const filterBtns = document.querySelectorAll('.filter-btn');
+const projCards  = document.querySelectorAll('.proj-card');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    projCards.forEach(card => {
+      const tags = card.dataset.tags || '';
+      const show = f === 'all' || tags.includes(f);
+      card.style.opacity    = show ? '1' : '0.25';
+      card.style.transform  = show ? '' : 'scale(0.97)';
+      card.style.transition = 'opacity 0.3s, transform 0.3s';
+    });
+  });
+});
+
+/* HEX BADGE SCROLL-IN */
+const hexObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      hexObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.hex-wrap').forEach(h => hexObs.observe(h));
+</script>
+</body>
+</html>
